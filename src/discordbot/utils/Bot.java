@@ -11,6 +11,6 @@ public class Bot{
 	public static MessageReceivedEvent currentEvent;
 	public static final String RANDOM_STUFF_FILE = System.getProperty("user.dir") + "/" + "\\src\\discordbot\\saves\\RandomStuff.txt";
 	public static final String PLAYERS_FILE = System.getProperty("user.dir") + "/" + "\\src\\discordbot\\saves\\Players.txt";
-	public static final String NINE_ELEVEN = "✈▐▐";
-	public static final String encoding = "UTF-16";
+	public static final String DATA_SEPARATOR = "\t";
+	public static final String ENCODING = "UTF-8";
 }

@@ -8,7 +8,7 @@ import discordbot.utils.Utils;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 
 public class AddPPCommand implements Command {
-	
+
 	private final String HELP = "USAGE: ~addPP <User> <Amount>\t\t\tAdds PPoints to specified account. Admin only.";
 
 	@Override
@@ -18,26 +18,29 @@ public class AddPPCommand implements Command {
 
 	@Override
 	public void action(String[] args, MessageReceivedEvent event) {
-		//check permissions
-		if (!Utils.checkRole(event.getMember().getRoles(), new String[]{"Flaming Queen"})){
+		// check permissions
+		// old: !Utils.checkRole(event.getMember().getRoles(), new
+		// String[]{"Flaming Queen"})
+		if (Main.players.containsKey(event.getMember().getUser().getId())
+				&& Main.players.get(event.getMember().getUser().getId()).isAdmin()) {
 			IO.out("No cheating for you.");
 			return;
 		}
-		//checks for arguments
-		if (args.length != 2){
+		// checks for arguments
+		if (args.length != 2) {
 			IO.out("Illegal arguments. Command must be of format ~addPP <User> <Amount>.");
 			return;
 		}
 		int amount;
-		try{
+		try {
 			amount = Integer.parseInt(args[1]);
-		} catch(NumberFormatException e){
+		} catch (NumberFormatException e) {
 			IO.out("Invalid amount!");
 			return;
 		}
-		//try to find user
+		// try to find user
 		PlayerAccount target = Main.players.get(args[0]);
-		if (target == null){
+		if (target == null) {
 			IO.out("There is no user with this ID.");
 			return;
 		}

@@ -6,28 +6,33 @@ public class PlayerAccount {
 	private String ID;
 	private String playerName;
 	private long ppScore;
-	
-	private Palenta palenta;	//each player has a palenta pet
-	
-	public PlayerAccount(Member player){		//Used when creating a player account during a session
+	private boolean admin;
+
+	private Palenta palenta; // each player has a palenta pet
+
+	public PlayerAccount(Member player) { // Used when creating a player account
+											// during a session
 		this.ID = player.getUser().getId();
 		this.playerName = player.getNickname();
 		ppScore = 1000;
 		palenta = new Palenta(this);
 	}
-	
-	public PlayerAccount(String data){			//Used when creating a player account from file
-		String[] values = data.split(Bot.NINE_ELEVEN);
+
+	public PlayerAccount(String data) { // Used when creating a player account
+										// from file
+		String[] values = data.split(Bot.DATA_SEPARATOR);
 		ID = values[0];
 		playerName = values[1];
-		ppScore = Long.parseLong(values[2],10);
-		palenta = new Palenta(this, Integer.parseInt(values[3]));
+		admin = values[2].equals("OP");
+		ppScore = Long.parseLong(values[3], 10);
+		palenta = new Palenta(this, Integer.parseInt(values[4]));
 	}
-	
-	//✈▐▐   is our data seperator
+
+	// \t is our data seperator
 	@Override
-	public String toString(){
-		return "" + ID + Bot.NINE_ELEVEN + playerName + Bot.NINE_ELEVEN + ppScore + Bot.NINE_ELEVEN + palenta.getExp();
+	public String toString() {
+		return "" + ID + Bot.DATA_SEPARATOR + playerName + Bot.DATA_SEPARATOR + (admin ? "OP" : "NOTOP")
+				+ Bot.DATA_SEPARATOR + ppScore + Bot.DATA_SEPARATOR + palenta.getExp();
 	}
 
 	public String getID() {
@@ -54,11 +59,19 @@ public class PlayerAccount {
 		this.ppScore = ppScore;
 	}
 	
-	public void setPalenta(Palenta palenta){
-		this.palenta = palenta;
+	public void setAdmin(boolean isAdmin){
+		this.admin = isAdmin;
 	}
 	
-	public Palenta getPalenta(){
+	public boolean isAdmin(){
+		return this.admin;
+	}
+
+	public void setPalenta(Palenta palenta) {
+		this.palenta = palenta;
+	}
+
+	public Palenta getPalenta() {
 		return palenta;
 	}
 }

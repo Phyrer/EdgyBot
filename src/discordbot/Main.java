@@ -104,7 +104,7 @@ public class Main{
 	@SuppressWarnings("rawtypes")
 	synchronized public static void savePlayerAccounts(String fileName){
 		try{
-			PrintWriter pw = new PrintWriter(new OutputStreamWriter(new FileOutputStream(Bot.PLAYERS_FILE, false), Bot.encoding));
+			PrintWriter pw = new PrintWriter(new OutputStreamWriter(new FileOutputStream(Bot.PLAYERS_FILE, false), Bot.ENCODING));
 			Iterator it = players.entrySet().iterator();
 			while(it.hasNext()){
 				Map.Entry entry = (Map.Entry)it.next();
@@ -124,11 +124,11 @@ public class Main{
 		//--- LOAD Players.txt ---
 		try{
 			fileInput = new FileInputStream(Bot.PLAYERS_FILE);
-			scan = new Scanner(fileInput, Bot.encoding);
+			scan = new Scanner(fileInput, Bot.ENCODING);
 			while (scan.hasNextLine()){
 				String playerData = scan.nextLine();
 				if (playerData.length() > 5){
-					String ID = playerData.split(Bot.NINE_ELEVEN)[0];
+					String ID = playerData.split(Bot.DATA_SEPARATOR)[0];
 					players.put(ID, new PlayerAccount(playerData));
 				}
 			}
@@ -139,7 +139,7 @@ public class Main{
 		//--- LOAD RandomStuff.txt ---
 		try {
 			fileInput = new FileInputStream(Bot.RANDOM_STUFF_FILE);
-			scan = new Scanner(fileInput, Bot.encoding);
+			scan = new Scanner(fileInput, Bot.ENCODING);
 			while (scan.hasNextLine()){
 				String content;
 				content = scan.nextLine();

@@ -25,7 +25,7 @@ public class AddRandomCommand implements Command {
 	public AddRandomCommand(){
 		try {
 			fileInput = new FileInputStream(Bot.RANDOM_STUFF_FILE);
-			scan = new Scanner(fileInput, Bot.encoding);
+			scan = new Scanner(fileInput, Bot.ENCODING);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
