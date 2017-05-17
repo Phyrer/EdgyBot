@@ -49,12 +49,12 @@ public class ProgressBar {
 	
 	@Override
 	public String toString(){
-		String res = "[";
+		String res = "";
 		for (int i = 0; i < segments; i++){
-			if (i < filled) res += "■";
-			else res += "□";
+			if (i < filled) res += ((char)9632);
+			else res += ((char)9633);
 		}
-		res += "] " + displayMessage;
+		res += "\n"+displayMessage;
 		return res;
 	}
 }

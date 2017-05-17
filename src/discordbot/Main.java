@@ -27,6 +27,7 @@ import discordbot.commands.SlotCommand;
 import discordbot.commands.StatsCommand;
 import discordbot.commands.VotekickCommand;
 import discordbot.communication.Sets;
+import discordbot.utils.Autosave;
 import discordbot.utils.Bot;
 import discordbot.utils.CommandParser;
 import discordbot.utils.PPGenerator;
@@ -56,7 +57,9 @@ public class Main{
 		loadFiles();
 		Timer time = new Timer();	//start generating PPoints
 		PPGenerator generator = new PPGenerator();
+		Autosave saver = new Autosave();
 		time.scheduleAtFixedRate(generator, 0, 60000);
+		time.scheduleAtFixedRate(saver, 60000, 60000);
 
 		//INITIALIZE ALL POSSIBLE COMMANDS
 		commands.put("ping", new PingCommand());

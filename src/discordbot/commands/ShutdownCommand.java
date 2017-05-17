@@ -20,14 +20,11 @@ public class ShutdownCommand implements Command {
 		if (event.getMember() == null)
 			IO.out("You can't shutdown the bot from private chat.\nDo it somewhere where you can prove your permissions.");
 
-		// old: Utils.checkRole(event.getMember().getRoles(), new
-		// String[]{"Flaming Queen","Bot Developer"})
 		if (Main.players.containsKey(event.getMember().getUser().getId())
 				&& Main.players.get(event.getMember().getUser().getId()).isAdmin()) {
 			IO.out2("RIP ME :(");
 			System.out.println("Saving files, shutting down bot...");
-			System.exit(0); // automatically starts shutdown hook which saves
-							// files
+			System.exit(0);
 		}else{
 			IO.out2("You have no powere here! ... Beep Boop");
 		}

@@ -19,8 +19,6 @@ public class AddPPCommand implements Command {
 	@Override
 	public void action(String[] args, MessageReceivedEvent event) {
 		// check permissions
-		// old: !Utils.checkRole(event.getMember().getRoles(), new
-		// String[]{"Flaming Queen"})
 		if (Main.players.containsKey(event.getMember().getUser().getId())
 				&& Main.players.get(event.getMember().getUser().getId()).isAdmin()) {
 			IO.out("No cheating for you.");

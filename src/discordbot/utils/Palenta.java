@@ -39,7 +39,7 @@ public class Palenta {
 		owner.setPpScore(owner.getPpScore() - pp);
 		//show progress
 		setProgress();
-		message += new ProgressBar(exp - thisLvlExp, nextLvlExp - thisLvlExp) + " EXP\n";
+		message += new ProgressBar(exp - thisLvlExp, nextLvlExp - thisLvlExp) + " EXP\n\n";
 		message += "You fed your palenta " + pp + " PPoints.";
 		IO.out(message);
 	}

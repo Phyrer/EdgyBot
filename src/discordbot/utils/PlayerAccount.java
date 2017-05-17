@@ -10,16 +10,16 @@ public class PlayerAccount {
 
 	private Palenta palenta; // each player has a palenta pet
 
-	public PlayerAccount(Member player) { // Used when creating a player account
-											// during a session
+	// Used when creating a player account during a session
+	public PlayerAccount(Member player) { 
 		this.ID = player.getUser().getId();
 		this.playerName = player.getNickname();
 		ppScore = 1000;
 		palenta = new Palenta(this);
 	}
 
-	public PlayerAccount(String data) { // Used when creating a player account
-										// from file
+	// Used when creating a player account from file
+	public PlayerAccount(String data) { 
 		String[] values = data.split(Bot.DATA_SEPARATOR);
 		ID = values[0];
 		playerName = values[1];
@@ -31,8 +31,11 @@ public class PlayerAccount {
 	// \t is our data seperator
 	@Override
 	public String toString() {
-		return "" + ID + Bot.DATA_SEPARATOR + playerName + Bot.DATA_SEPARATOR + (admin ? "OP" : "NOTOP")
-				+ Bot.DATA_SEPARATOR + ppScore + Bot.DATA_SEPARATOR + palenta.getExp();
+		return "" + ID 
+				+ Bot.DATA_SEPARATOR + playerName 
+				+ Bot.DATA_SEPARATOR + (admin ? "OP" : "NOTOP")
+				+ Bot.DATA_SEPARATOR + ppScore 
+				+ Bot.DATA_SEPARATOR + palenta.getExp();
 	}
 
 	public String getID() {
